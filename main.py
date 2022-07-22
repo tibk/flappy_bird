@@ -7,7 +7,6 @@ MAX_PIXELS = 1000
 UP_KEY = "u"
 BOUNCE = 10
 DECREASE = 2
-current_input = []
 
 
 class KeyboardMonitor:
