@@ -24,13 +24,16 @@ class KeyboardMonitor:
 
     def __init__(self, inputs):
         self.inputs = inputs
-        listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
-        listener.start()
+        self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
+        self.listener.start()
 
 
 class Position:
-    def __init__(self, y):
-        self.y = y  # from 0 (bottom) to max_pixels
+    def __init__(self, pos=None):
+        if pos:
+            self.y = pos
+        else:
+            self.y = randint(0, MAX_PIXELS)
 
     def update(self, current_inputs):
         did_flap = UP_KEY in current_inputs
@@ -44,7 +47,7 @@ class Position:
 
 
 def main():
-    position = Position(randint(0, MAX_PIXELS))
+    position = Position()
     current_inputs = []
     KeyboardMonitor(current_inputs)
     while True:
